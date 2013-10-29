@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Testone::Application.config.secret_key_base = 'c20450adbd61337a120740091a1a6538c7c1cd9a385f79a5e5b875bd692864269352ac82cfa08ac958164b8c230365d7b5d2812011f168c272b0a1591a0f1a87'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+SampleApp::Application.config.secret_key_base = secure_token
