@@ -16,6 +16,11 @@ group :test do
   gem 'libnotify', '0.8.0'
 end
 
+group :development, :test do
+  gem 'spork-rails', '4.0.0'
+  gem 'guard-spork', '1.5.0'
+  gem 'childprocess', '0.3.6'
+end
 
 group :production do
   gem 'pg', '0.15.1'
