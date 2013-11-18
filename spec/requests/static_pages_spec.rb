@@ -5,57 +5,40 @@ describe "Static pages" do
 
   let(:base_title) { "Rails Tutorial" }
 
-  describe "Home page" do
 
-    it "should have the content 'Sample App'" do
-      visit root_path
-      expect(page).to have_content('Sample App')
-    end
-    it "should have right title" do
-      visit root_path
-      expect(page).to have_title("#{base_title}")
-    end
-    it "should not have a custom page title" do
-      visit root_path
-      expect(page).not_to have_title('Home')
-    end
+  subject { page }
+
+  describe "Home page" do
+    before { visit root_path }
+
+    it { should have_content('Sample App') }
+    it { should have_title(full_title('')) }
+    it { should_not have_title("Home")}
+    
   end 
 
   describe "Help page" do
+    before { visit help_path }
 
-    it "should have the content 'Help'" do
-      visit help_path
-      expect(page).to have_content('Sample App')
-      expect(page).to have_content('Help')
-    end
-    it "should show title 'Help'" do
-      visit help_path
-      expect(page).to have_title("#{base_title} | Help")
-    end
+    it { should have_content('Sample App') }
+    it { should have_content('Help') }
+    it { should have_title(full_title("Help")) }
+
   end
 
   describe "About page" do
+    before { visit about_path }
 
-    it "should have the content 'About us'" do
-      visit about_path
-      expect(page).to have_content('About us')
-    end
-    it "should have 'about' title" do
-      visit about_path
-      expect(page).to have_title("#{base_title} | About")
-    end
+    it { should have_content('About us') } 
+    it { should have_title(full_title("About")) }
+
   end
 
   describe "contact page" do
+    before { visit contact_path }
 
-    it "should have content 'contact us'" do
-      visit contact_path
-      expect(page).to have_content('Contact us')
-    end
-    it "should have title 'contact'" do
-      visit contact_path
-      expect(page).to have_title("#{base_title} | Contact")
-    end
+    it { should have_content('Contact us') }
+    it { should have_title(full_title("Contact")) }
 
   end
 
