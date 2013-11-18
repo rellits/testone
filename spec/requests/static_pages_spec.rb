@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+
 describe "Static pages" do
 
   let(:base_title) { "Rails Tutorial" }
