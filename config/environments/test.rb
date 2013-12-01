@@ -33,4 +33,7 @@ Testone::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # speed up test: set bcrypt to fast instead of secure
+  ActiveModel::SecurePassword.min_cost = true
 end
